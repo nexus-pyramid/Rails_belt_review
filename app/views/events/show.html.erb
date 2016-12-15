@@ -1,0 +1,44 @@
+<h1>Events#show</h1>
+<p>Find me in app/views/events/show.html.erb</p>
+<h1> <%= @event.name %> </h1>
+<label> Host: </label>
+<h2> <%= @event.user.First_name %> </h2>
+<label> date: </label>
+<h2> <%= @event.date %> </h2>
+<label> Location: </label>
+<h2> <%= @event.city %> <%= @event.state %> </h2>
+<label> People who are joining the event: </label>
+<h2> <%= @guest.count %> </h2>
+<table>
+	<tr>
+		<th>
+		Name
+		</th>
+		<th>
+		city
+		</th>
+		<th>
+		state
+		</th>
+	</tr>
+		<tbody>
+	   		 <% @guests.each do |g| %>
+				<tr> 
+					<td> <%= g.First_name %> <%= g.Last_name %></td>
+					<td> <%= g.user_city %> </td>
+					<td> <%= g.user_state %> </td>
+				</tr>
+				<% end %>
+		</tbody>
+</table>
+<h3> Discussion about this event </h3>
+<% @comments.each do |com| %>
+<p> <%= com.First_name %></p>
+<p> <%= com.content %> </p>
+<% end %>
+<form method="post" action="/comment/<%= @event.id %>">
+	 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<label>add Comment</label>
+	<textarea name="comment[content]"></textarea>
+	<input type="submit" value="submit Comments">
+</form>

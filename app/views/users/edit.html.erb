@@ -1,0 +1,22 @@
+<h1> edit User </h1>
+<form action="/users/<%= @user.id %>" method="POST">
+<input type="hidden" name="_method" value="patch">
+ <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<p> firstname</p>
+<input type="text" name="user[First_name]" value="<%= @user.First_name %>"><br>
+<p> Last name </p>
+<input type="text" name="user[Last_name]" value="<%= @user.Last_name %>">
+<p> email</p>
+<input type="text" name="user[email]" value="<%= @user.email %>"><br>
+<p> Location </p>
+<select name="user[state]" id="state">
+  <% @states.each do |state| %>
+    <option value="<%= state %>">
+    <%= state %>
+    <% end %>
+  </select>
+<input type="text" name="user[city]" value=" <%= @user.city %>"><br>
+<input type="submit" value="update records">
+</form>
+<a href="/users/<%= @user.id %>" data-method='delete'>Delete Account</a>
+<a href="/">back</a>
